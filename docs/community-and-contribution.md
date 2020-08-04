@@ -5,4 +5,8 @@ Our pipelines are built upon layers of open-source tools and other community-dri
 
 ## Improve Pipeliner
 - [Open an issue](https://github.com/CCBR/Pipeliner/issues) to make feature requests and report bugs
-- [Contact us](https://github.com/CCBR/Pipeliner/wiki/Contact-us) for general questions and support 
+- [Contact us][1] for general questions and support 
+
+
+<!-- Relative links -->
+  [1]: contact-us.md
