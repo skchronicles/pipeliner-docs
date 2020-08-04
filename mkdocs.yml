@@ -91,7 +91,7 @@ nav:
   - Pipelines:
     - RNA-seq: dev/lorem_ipsum.md
     - ChIP-seq: dev/lorem_ipsum.md
-  - FAQs:
+  - FAQ:
     - Troubleshooting: dev/lorem_ipsum.md
     - Data Privacy: dev/lorem_ipsum.md
     - License: dev/lorem_ipsum.md
