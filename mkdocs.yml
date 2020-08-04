@@ -96,5 +96,5 @@ nav:
     - Data Privacy: dev/lorem_ipsum.md
     - License: dev/lorem_ipsum.md
   - Changelog: dev/lorem_ipsum.md
-  - Community: dev/lorem_ipsum.md
-  - Contact: dev/lorem_ipsum.md 
+  - Community: community-and-contribution.md
+  - Contact: contact-us.md 
