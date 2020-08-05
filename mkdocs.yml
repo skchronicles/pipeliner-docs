@@ -92,7 +92,7 @@ nav:
     - RNA-seq: dev/lorem_ipsum.md
     - ChIP-seq: dev/lorem_ipsum.md
   - FAQ:
-    - Troubleshooting: dev/lorem_ipsum.md
+    - Troubleshooting: troubleshooting.md
     - Data Privacy: dev/lorem_ipsum.md
   - Contact: contact-us.md 
   - Community: community-and-contribution.md
