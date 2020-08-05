@@ -56,7 +56,7 @@ If you are still receiving error messages, this is an indication that you do not
 
 ## Job Status
 
-**Q. How do I know if Pipeliner finished running successfully? How can I identify failed jobs?**
+**Q. How do I know if Pipeliner finished running successfully?**
 
 **A.** There are several different ways of checking the status of each job submitted to the cluster.  
 Here are a few suggestions:
@@ -95,7 +95,10 @@ Here are a few suggestions:
         Each job that Pipeliner submits to the cluster starts with the `pl:` prefix.
 
 
-If there are errors, you'll need to identify which jobs failed and check its corresponding SLURM output file. The SLURM output file may contain a clue as to why the job failed.
+**How can I identify failed jobs?**
+
+**A.** If there are errors, you'll need to identify which jobs failed and check its corresponding SLURM output file. 
+The SLURM output file may contain a clue as to why the job failed.
 
 !!! Failed-jobs "Find Failed Jobs"
 
