@@ -21,7 +21,7 @@ theme:
   name: material
   palette:
     scheme: default
-  logo: assets/icons/analytics-white-48dp.svg
+  logo: assets/icons/doc-book.svg
   favicon: assets/favicon/favicon.ico
 
 # Plugins
