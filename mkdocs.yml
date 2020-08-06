@@ -21,8 +21,8 @@ theme:
   name: material
   palette:
     scheme: default
-  logo: images/analytics-white-48dp.svg
-  favicon: images/favicon.ico
+  logo: assets/icons/analytics-white-48dp.svg
+  favicon: assets/favicon/favicon.ico
 
 # Plugins
 plugins:
