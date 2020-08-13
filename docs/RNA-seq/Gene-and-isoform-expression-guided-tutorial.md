@@ -1,8 +1,8 @@
-# Guided Tutorial
+# User Tutorial
 
 **Estimated completion time:** `15 mins`
 
-This section offers a tutorial that you can follow along on Biowulf. We have provided a test data set so you can learn how to set-up and run this pipeline.
+This section offers a guided tutorial that you can follow along on Biowulf. We have provided a test data set so you can learn how to set-up and run this pipeline.
 
 > _**Please note:**_ To follow along with this tutorial, you must have a [Biowulf account](https://hpc.nih.gov/docs/accounts.html).
 
@@ -159,7 +159,7 @@ Before running the second pipeline, it is important to ensure the pipeline has r
 If the pipeline reports that it's **`(100%) done`**, you are ready to run the Differential Expression Pipeline.
 
 You can also verify that all your jobs have completed by checking out the following file in your pipeline's working directory: _HPC_usage_table.txt_. This file doesn't appear until all jobs are finished. It contains information about each job submitted to the cluster. Here are columns in this tab-delimited file:
-```
+```bash
 1 JobName
 2 Jobid
 3 Partition
@@ -177,5 +177,5 @@ You can also verify that all your jobs have completed by checking out the follow
 15 Account
 16 Username
 ```
-This file can be opened in Microsoft Excel for easy viewing, or it can be viewed from the command-line. Please examine the values under the column **State**. The values can be **COMPLETED**, **RUNNING**, or **FAILED**. If there are no **FAILED** jobs and all jobs are **COMPLETED**, then the Quantification and Quality-control pipeline has finished running successfully. You are now ready to run to the next pipeline: Differential Expression pipeline.
+This file can be opened in Microsoft Excel for easy viewing, or it can be viewed from the command-line. Please examine the values under the column **State**. The values can be **COMPLETED**, **RUNNING**, or **FAILED**. If there are no **FAILED** jobs and all jobs are **COMPLETED**, then the Quantification and Quality-control pipeline has finished running successfully. You are now ready to run to the Differential Expression pipeline.
 

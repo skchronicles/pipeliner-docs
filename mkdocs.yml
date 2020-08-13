@@ -92,10 +92,13 @@ nav:
     - RNA-seq:
       - Theory and practical guide: RNA-seq/Theory-and-practical-guide-for-RNA-seq.md
       - Overview of pipelines: RNA-seq/Gene-and-isoform-expression-overview.md
-      - User Tutorial: RNA-seq/Gene-and-isoform-expression-guided-tutorial.md
       - Quick Start: RNA-seq/TLDR-RNA-seq.md
+      - User Tutorial: RNA-seq/Gene-and-isoform-expression-guided-tutorial.md
       - Resources: RNA-seq/Differential-expression-pipeline-tools-and-versions.md
-    - ChIP-seq: dev/lorem_ipsum.md
+    - ChIP-seq:
+      - User Tutorial: ChIP-seq/ChIP-seq.md
+      - Output Files: ChIP-seq/ChIP-seq-output-files.md 
+      - Resources: ChIP-seq/ChIP-seq-tools.md
   - FAQ:
     - Troubleshooting: troubleshooting.md
     - Data Privacy: dev/lorem_ipsum.md
