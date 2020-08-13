@@ -1,35 +1,4 @@
-# Gene and isoform expression pipeline
-
-## Overview
-This page is the main source of documentation for users that are getting started with the RNA-seq expression pipeline. If you are not familiar with RNA-seq, please checkout our [theory and practical guide](Theory-and-practical-guide-for-RNA-seq.md). That section provides a conceptual overview to RNA-seq analysis and as well as a set of generalized guidelines for different quality-control metrics.  
-
-Our [resources page](Differential-expression-pipeline-tools-and-versions.md) contains more information about the pipeline's supported reference genomes along with every tool the pipeline employs.
-
-**If you are a new user**, we recommend following our [guided tutorial](Gene-and-isoform-expression-pipeline#tutorial) with the provided test data set on Biowulf. If you are a new user and you would like to skip our guided tutorial, please see our [quick start section](TLDR-RNA-seq.md#quick-start).
-
-The RNA-seq expression workflow is composed of two steps (or pipelines). In the first pipeline, gene and isoform expression are quantified and pre- and post- alignment QC is performed. In the second pipeline, differential expression analysis is performed. In both pipelines, a series of interactive reports are generated to allow a user to explore their results. Both pipelines support the following reference genomes:  
-
-**Human** `hg19` `hg38` `hg38_30` `hs37d5` `hs38d1` `hg38_30`  
-**Human + _Integrated Virus_** `hg38_30_KSHV` `hg38_HPV16`  
-**Mouse** `mm10` `mm9` `mm10_M21`  
-**Canine** `canFam3`  
-**Rhesus macaque** `Mmul_8.0.1`
-
-### Quantification and quality-control pipeline
-
-In the first pipeline, the sequencing quality of each sample is independently assessed using FastQC, Preseq, Picard tools, RSeQC, SAMtools, and QualiMap. FastQ Screen and Kraken + Krona are used to screen for various sources of contamination. Adapter sequences are removed using Cutadapt prior to mapping to the user-selected reference genome. STAR is run in a two-pass mode where splice-junctions are collected and aggregated across all samples and provided to the second-pass of STAR. Gene and isoform expression levels are quantified using RSEM and subread. The expected counts from RSEM are merged across samples to create a two counts matrices for genes and isoforms.
-
-![RNA-seq quantification pipeline](../assets/images/RNA-seq_QC_Expression_Pipeline.svg) <sup>**Fig 1. An Overview of the Quantification and Quality-control Pipeline.** Gene and isoform counts are quantified and a series of QC-checks are performed to assess the quality of the data. This pipeline stops at the generation of a raw counts matrix, which is input to the next sub-workflow. To run the pipeline, a user must select their raw data directory (i.e. the location to their FastQ files), a reference genome, and output directory (i.e. the location where the pipeline performs the analysis). Quality-control information is summarized across all samples in the MultiQC report.</sup>
-
-### Differential Expression pipeline
-
-In the second step, the count matrices from RSEM are filtered to remove low count genes (i.e. `[CPM < 0.5] >=  X samples`) prior to differential expression analysis. The filtered raw gene count matrix is normalized, and differential expression analysis is performed between user-defined groups of samples (i.e. contrasts) using three different methods: DESeq2, limma, and edgeR. Enriched pathways are identified via `l2p` over-representation test using gene sets from the Molecular Signatures Database.
-
-> _**Please note:**_ As input, this sub-workflow will accept the raw counts matrix generated in the first step (i.e. RNA-seq quantification and quality-control pipeline), or it will accept a user-provided raw counts matrix.
-
-![RNA-seq DE pipeline](../assets/images/RNA-seq_DE_Pipeline.svg) <sup>**Fig 2. An overview of the Differential Expression Pipeline.** Three different methods (Deseq2, limma, and edgeR) are employed to find differentially expressed genes for each user-defined contrast. EBSeq is used to find differentially expressed isoforms. A PCA report containing before and after normalization plots (using DESeq2, limma, and edgeR) is generated for each contrast.</sup>
-
-## Tutorial
+# Guided Tutorial
 
 **Estimated completion time:** `15 mins`
 
@@ -37,11 +6,11 @@ This section offers a tutorial that you can follow along on Biowulf. We have pro
 
 > _**Please note:**_ To follow along with this tutorial, you must have a [Biowulf account](https://hpc.nih.gov/docs/accounts.html).
 
-### Quantification and quality-control pipeline
+## Quantification and quality-control pipeline
 
 This section provides step-by-step instructions for setting up the first pipeline (Quantification and Quality-control pipeline) and a brief description of the pipeline's output files and directories. We assume that you have already successfully launched the GUI. If not, please see [Launch Pipeliner](https://github.com/CCBR/Pipeliner/wiki/TLDR-RNA-seq#quick-start).
 
-#### About the Demo Dataset  
+### About the Demo Dataset  
 We have provided a test dataset that you can use to follow along with this tutorial. The raw data for this demo resides in `/data/CCBR_Pipeliner/testdata/rnaseq/expression_demo/`. This demo dataset consists of 24 paired-end FastQ files for 12 samples, originating from a human cell-line. Libraries were constructed with a poly-A selection library preparation kit. There are three groups each with 4 replicates: `Cntrl`, `TgA`, and `TgB`. The `Cntrl` samples represent a baseline biological state while `TgA` and `TgB` samples represent the same cell-line after the treatment of two drugs: `A` and `B`.  
 Here is a listing of all the samples in the demo dataset:
 ```bash
@@ -79,10 +48,10 @@ Pipeliner expects input files to follow a specific naming convention: `<sampleNa
 
 Before you can run the expression pipeline, there are a few key pieces of information that must be provided.
 
-#### Step 0. Fill out the `Project Information` section   
+### Step 0. Fill out the `Project Information` section   
 This section contains three fields: `Project Id`, `Email address`, `Flow Cell ID`. For this demo, you can set _Project Id_ to `project`. This will be the name of the pipeline's master job. Please enter your email address in the `Email address` field.
 
-#### Step 1. Select the correct Pipeline Family    
+### Step 1. Select the correct Pipeline Family    
 Please select **`rnaseq`** from the pipeline family drop-down menu.
 
 <p align="center">
@@ -91,7 +60,7 @@ Please select **`rnaseq`** from the pipeline family drop-down menu.
 
 > _**Please note:**_ The `scrnaseq` option is for single-cell data. This tutorial and pipeline are for bulk RNA-seq. To run the single-cell RNA-seq pipeline, please see its documentation.
 
-#### Step 2. Select the Reference Genome   
+### Step 2. Select the Reference Genome   
 As mentioned above, these samples originate from a human cell-line. Please select `hg38` from the `Genome` drop-down menu.
 <p align="center">
     <img src="https://github.com/CCBR/Pipeliner/wiki/Images/RNA-Seq_Doc/refgenome.png" width="50%" height="50%"/>
@@ -99,7 +68,7 @@ As mentioned above, these samples originate from a human cell-line. Please selec
 
 > _**Please Note:**_ If you select a reference genome that is not supported by the pipeline, a pop-up box will notify you.
 
-#### Step 3. Select your Data Directory   
+### Step 3. Select your Data Directory   
 If you are following along with this tutorial, you can use the included demo dataset. Please select the **`Open Directory`** button and navigate to the following path in the pop-up box:  
 ```
 /data/CCBR_Pipeliner/testdata/rnaseq/expression_demo/
@@ -112,7 +81,7 @@ Once you have pointed-to or navigated to the directory above, select **`OK`**.
 
 You should receive a message that 24 files were found. Click **`OK`**.
 
-#### Step 4. Select your Working Directory   
+### Step 4. Select your Working Directory   
 You are now ready to select your working directory. This is where all of the pipeline's output files will be created. In this tutorial, I set the working directory to `/scratch/demo/rnaseq`, but you could set it to another location like `/scratch/demo/yourUserName/`. The only pre-requisite is that this directory should not exist. The process very similar to the step above except, you will point to a directory that does not exist on the filesystem.
 <p align="center">
     <img src="https://github.com/CCBR/Pipeliner/wiki/Images/RNA-Seq_Doc/RNA_find_data_dir.png" width="50%" height="50%"/>
@@ -120,16 +89,16 @@ You are now ready to select your working directory. This is where all of the pip
 
 > _**Please Note:**_ Input and output files will be read from and written to the Biowulf's filesystem. If your raw data does not exist on Biowulf, you will need to upload it there first. Output files can be downloaded from Biowulf to your local computer for downstream analysis.  
 
-#### Step 5. Initialize your Working Directory    
+### Step 5. Initialize your Working Directory    
 In this step, we will initialize or create the Working Directory defined in the step above. Please select the **`Initialize Directory`** button. During this step, the required resources to run the pipeline are copied into the working directory. After a few moments, you should receive a notification stating the directory was successfully initialized:
 <p align="center">
     <img src="https://github.com/CCBR/Pipeliner/wiki/Images/RNA-Seq_Doc/select_init.png" width="50%" height="50%"/>
 </p>
 
-#### Step 6. Select the Pipeline   
+### Step 6. Select the Pipeline   
 You are now ready to select the Quantification and Quality-control Pipeline. In the options section, please select **`Quality Control Analysis`** from the `Pipeline` field.
 
-#### Step 7. Load Group Information  
+### Step 7. Load Group Information  
 In the options, you will need to provide group information for each sample. Select **`Set Groups`** from the `Sample Information` section. Paste the group information below into the pop-up box and click **`save`**.  
 
 Example `groups.tab` file
@@ -148,7 +117,7 @@ TreatmentB_S72	TgB	TgB_3
 TreatmentB_S73	TgB	TgB_4
 ```
 
-#### Step 8. Dry-run the pipeline   
+### Step 8. Dry-run the pipeline   
 Please select the **`Dry-run`** button. This will generate the pipeline's *Snakefile*, *run.json*, and it will dry run the pipeline. This step take about 10-20 seconds to run, so please be patient until another window pops up with DAG information:
 
 <p float="left" align="center">
@@ -158,7 +127,7 @@ Please select the **`Dry-run`** button. This will generate the pipeline's *Snake
 
 If there is no error in the `Dry Run`, please close the dry-run popup box and proceed to the next step.
 
-#### Step 9. Run the pipeline   
+### Step 9. Run the pipeline   
 You are now ready to run the Quantification and Quality-control pipeline! Please select the **`Run`** button. In a few moments, a pop-up box will appear stating that the job is starting. Please select **`OK`**. Once `OK` is selected from this popup box, the job will be submitted to the SLURM queue on Biowulf.
 
 <p align="center">
@@ -173,7 +142,7 @@ That's it! You will receive an automated email when the pipeline starts and ends
 
 You can now close out of the GUI. It should be noted that this pipeline takes around 3-4 hours to run.
 
-#### Check Progress
+## Check Progress
 If you are curious to see what jobs are running, you can run `sjobs` (or `squeue -u $USER`). All of Pipeliner's jobs begin with the prefix `pl:`.
 
 <p align="center">
@@ -209,3 +178,4 @@ You can also verify that all your jobs have completed by checking out the follow
 16 Username
 ```
 This file can be opened in Microsoft Excel for easy viewing, or it can be viewed from the command-line. Please examine the values under the column **State**. The values can be **COMPLETED**, **RUNNING**, or **FAILED**. If there are no **FAILED** jobs and all jobs are **COMPLETED**, then the Quantification and Quality-control pipeline has finished running successfully. You are now ready to run to the next pipeline: Differential Expression pipeline.
+
