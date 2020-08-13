@@ -18,6 +18,8 @@ pip install -r requirements.txt
 ### Preview while editing  
 MkDocs includes a previewing server, so you can view your update live and as you write your documentation. The server will automatically rebuild the site upon saving.  
 ```bash
+# Activate the virtual environment
+. .venv/bin/activate
 # Start serving your documentation
 mkdocs serve
 ```
