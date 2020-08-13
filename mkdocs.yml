@@ -89,7 +89,8 @@ nav:
       - Installation: dev/lorem_ipsum.md
       - Customization: dev/lorem_ipsum.md
   - Pipelines:
-    - RNA-seq: dev/lorem_ipsum.md
+    - RNA-seq:
+      - Expression pipeline: RNA-seq/Gene-and-isoform-expression-pipeline.md
     - ChIP-seq: dev/lorem_ipsum.md
   - FAQ:
     - Troubleshooting: troubleshooting.md
