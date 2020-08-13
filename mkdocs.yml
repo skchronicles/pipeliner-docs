@@ -90,8 +90,8 @@ nav:
       - Customization: dev/lorem_ipsum.md
   - Pipelines:
     - RNA-seq:
-      - Theory and practical guide: RNA-seq/Theory-and-practical-guide-for-RNA-seq.md
-      - Overview of pipelines: RNA-seq/Gene-and-isoform-expression-overview.md
+      - Theory and Practical Guide: RNA-seq/Theory-and-practical-guide-for-RNA-seq.md
+      - Overview of Pipelines: RNA-seq/Gene-and-isoform-expression-overview.md
       - Quick Start: RNA-seq/TLDR-RNA-seq.md
       - User Tutorial: RNA-seq/Gene-and-isoform-expression-guided-tutorial.md
       - Resources: RNA-seq/Differential-expression-pipeline-tools-and-versions.md
