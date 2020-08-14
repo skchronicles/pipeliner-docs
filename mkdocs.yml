@@ -80,7 +80,7 @@ markdown_extensions:
 # Page Tree
 nav:
   - Home: index.md
-  - About: dev/lorem_ipsum.md
+  - About: about.md
   - Getting started:
     - Users:
       - Prerequisites: dev/lorem_ipsum.md
@@ -104,5 +104,5 @@ nav:
     - Data Privacy: dev/lorem_ipsum.md
   - Contact: contact-us.md 
   - Community: community-and-contribution.md
-  - Changelog: dev/lorem_ipsum.md
+  - Changelog: changelog.md
   - License: license.md
