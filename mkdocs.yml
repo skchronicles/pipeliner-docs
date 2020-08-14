@@ -102,7 +102,7 @@ nav:
   - FAQ:
     - Troubleshooting: troubleshooting.md
     - Data Privacy: dev/lorem_ipsum.md
-  - Contact: contact-us.md 
-  - Community: community-and-contribution.md
+  - Contribute: community-and-contribution.md
   - Changelog: changelog.md
+  - Contact: contact-us.md 
   - License: license.md
